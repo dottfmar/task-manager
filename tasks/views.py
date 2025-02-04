@@ -1,9 +1,11 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, DeleteView, ListView
 
-from tasks.forms import WorkerEditForm, TeamForm, ProjectForm, TaskForm
+from tasks.forms import WorkerEditForm, TeamForm, ProjectForm, TaskForm, WorkerCreationForm
 from tasks.models import Worker, Team, Project, Task
 
 
@@ -11,7 +13,7 @@ class HomePageView(TemplateView):
     template_name = 'tasks/home.html'
 
 
-class ProfileView(DetailView):
+class ProfileView(LoginRequiredMixin, DetailView):
     model = Worker
     template_name = 'tasks/my_profile.html'
 
@@ -19,7 +21,7 @@ class ProfileView(DetailView):
         return self.request.user.id
 
 
-class EditProfileView(UpdateView):
+class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Worker
     form_class = WorkerEditForm
     template_name = 'tasks/worker_form.html'
@@ -29,57 +31,57 @@ class EditProfileView(UpdateView):
         return self.request.user
 
 
-class TeamView(ListView):
+class TeamView(LoginRequiredMixin, ListView):
     model = Team
     template_name = 'tasks/teams.html'
 
 
-class TeamCreateView(CreateView):
+class TeamCreateView(LoginRequiredMixin, CreateView):
     model = Team
     form_class = TeamForm
     success_url = reverse_lazy("tasks:teams")
 
 
-class TeamUpdateView(UpdateView):
+class TeamUpdateView(LoginRequiredMixin, UpdateView):
     model = Team
     form_class = TeamForm
     success_url = reverse_lazy("tasks:teams")
     template_name = 'tasks/team_form.html'
 
 
-class TeamDeleteView(DeleteView):
+class TeamDeleteView(LoginRequiredMixin, DeleteView):
     model = Team
     success_url = reverse_lazy("tasks:teams")
     template_name = 'tasks/team_delete.html'
 
 
-class ProjectView(ListView):
+class ProjectView(LoginRequiredMixin, ListView):
     model = Project
     template_name = 'tasks/projects.html'
 
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     form_class = ProjectForm
     success_url = reverse_lazy("tasks:projects")
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectForm
     success_url = reverse_lazy("tasks:projects")
     template_name = 'tasks/project_form.html'
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     success_url = reverse_lazy("tasks:projects")
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(LoginRequiredMixin, DetailView):
     model = Project
     template_name = 'tasks/project_detail.html'
 
 
-class TaskView(ListView):
+class TaskView(LoginRequiredMixin, ListView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/tasks.html'
@@ -98,14 +100,14 @@ class TaskView(ListView):
             queryset = queryset.filter(priority=priority)
         return queryset
 
-class TaskToggleStatusView(View):
+class TaskToggleStatusView(LoginRequiredMixin, View):
     def post(self, request, pk):
         task = get_object_or_404(Task, pk=pk)
         task.is_completed = not task.is_completed
         task.save()
         next_url = request.POST.get("next", request.META.get("HTTP_REFERER", "tasks:tasks"))
         return redirect(next_url)
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("tasks:tasks")
@@ -115,11 +117,11 @@ class TaskCreateView(CreateView):
         context['workers'] = Worker.objects.all()
         return context
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'tasks/task_detail.html'
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("tasks:tasks")
@@ -137,7 +139,17 @@ class TaskUpdateView(UpdateView):
         return context
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     success_url = reverse_lazy("tasks:tasks")
 
+def register(request):
+    if request.method == 'POST':
+        form = WorkerCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('tasks:home')
+    else:
+        form = WorkerCreationForm()
+    return render(request, 'registration/register.html', {'form': form})

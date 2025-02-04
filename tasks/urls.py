@@ -18,7 +18,7 @@ from tasks.views import (
     TaskDetailView,
     TaskUpdateView,
     TaskDeleteView,
-    TaskToggleStatusView
+    TaskToggleStatusView, register
 )
 
 app_name = 'tasks'
@@ -42,4 +42,5 @@ urlpatterns = [
     path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
     path("<int:pk>/toggle-status/", TaskToggleStatusView.as_view(), name="task-toggle-status"),
+    path('accounts/register/', register, name='register'),
 ]

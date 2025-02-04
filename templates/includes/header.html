@@ -4,12 +4,11 @@
     <div class="container d-flex justify-content-center align-items-center">
       {% if user.is_authenticated %}
         <div class="nav-links d-flex">
-          <a class="link px-4" href="{% url "tasks:profile" %}">My profile</a>
+          <a class="link px-4" href="{% url 'tasks:profile' %}">My profile</a>
           <a class="link px-4" href="/" title="Home">Home</a>
           <a class="link px-4" href="{% url 'tasks:teams' %}">Teams</a>
           <a class="link px-4" href="{% url 'tasks:projects' %}">Projects</a>
           <a class="link px-4" href="{% url 'tasks:tasks' %}">Tasks</a>
-{#          <a class="link px-4" href="{% url 'tasks:workers' %}">Workers</a>#}
           <a class="link px-4 logout-link" href="#" onclick="document.getElementById('logout-form').submit(); return false;">
             Logout
           </a>
@@ -18,8 +17,9 @@
           </form>
         </div>
       {% else %}
-        <div class="d-flex justify-content-end w-100">
-          <a class="link px-4 login-link" href="{% url 'login' %}">Sing in</a>
+        <div class="d-flex justify-content-between w-100">
+          <a class="link px-4 login-link" href="{% url 'login' %}">Sign in</a>
+          <a class="link px-4 signup-link" href="{% url 'tasks:register' %}">Sign up</a>
         </div>
       {% endif %}
     </div>

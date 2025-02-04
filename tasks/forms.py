@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 
 from tasks.models import Worker, Team, Project, TaskType, Task
 
@@ -100,3 +101,8 @@ class TaskForm(forms.ModelForm):
             attrs={'class': 'form-check-input'}
         ),
     }
+
+class WorkerCreationForm(UserCreationForm):
+    class Meta:
+        model = Worker
+        fields = ['username', 'password1', 'password2', 'position']
