@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="{% static 'css/home_styles.css' %}">
 </head>
 <body>
-
   {% if not user.is_authenticated %}
   <div id="splash-overlay" onclick="revealPage()">
     <div id="splash-content">
@@ -30,6 +29,9 @@
   {% endif %}
 
   <div class="content-container" id="main-content" style="{% if user.is_authenticated %}display: flex;{% else %}display: none;{% endif %}">
+    <header id="page-header">
+      {% include "includes/header.html" %}
+    </header>
     <h1>Customize your workspace with Foravlima</h1>
     <div class="content-item">
       <i class="fas fa-users"></i>
@@ -47,5 +49,6 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{% static 'js/home_scripts.js' %}?v=1.0"></script>
+  <link rel="stylesheet" href="{% static 'css/base_styles.css' %}">
 </body>
 </html>

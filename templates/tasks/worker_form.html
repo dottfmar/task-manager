@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="profile-edit-container">
+    <h2 class="text-center">Edit profile</h2>
+    
+    <form method="post" class="profile-edit-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}">First name</label>
+            {{ form.first_name|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}">Last name</label>
+            {{ form.last_name|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email|add_class:"form-control" }}
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-save"><i class="fas fa-save"></i> Save</button>
+            <a href="{% url 'tasks:profile' %}" class="btn btn-cancel"><i class="fas fa-times"></i> Cancel</a>
+        </div>
+    </form>
+</div>
+  <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
