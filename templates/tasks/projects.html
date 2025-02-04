@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+   <link rel="stylesheet" href="{% static 'css/projects.css' %}">
+   <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+
+   <div class="container mt-5">
+      <div class="d-flex justify-content-between mb-5">
+         <h1 class="page-title">Projects</h1>
+         <a href="{% url 'tasks:project-create' %}" class="btn btn-custom">Create new project</a>
+      </div>
+
+      {% if project_list %}
+         <div class="row">
+            {% for project in project_list %}
+               <div class="col-md-12 mb-5">
+               <a href="{% url 'tasks:project-detail' pk=project.id %}" class="text-decoration-none">
+                  <div class="card project-card">
+                     <div class="card-body project-bg">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="card-title">{{ project.name }}</h5>
+                                <p class="card-text">
+                                   <strong>Assigned team:</strong> {{ project.team }} <br><br>
+                                   <strong>Description:</strong> {{ project.description }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="edit-text">
+                          <a href="{% url 'tasks:project-update' pk=project.id %}"><i class="fa fa-edit"></i> Edit</a>
+                        </p>
+                        <p class="delete-text" data-toggle="modal" data-target="#deleteModal{{ project.id }}">
+                            <i class="fa fa-trash-alt"></i> Delete
+                        </p>
+                    </div>
+                  </div>
+               </div>
+            {% endfor %}
+         </div>
+      {% else %}
+         <p class="no-projects">You don't have projects yet</p>
+      {% endif %}
+   </div>
+
+   {% for project in project_list %}
+   <div class="modal fade" id="deleteModal{{ project.id }}" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-body d-flex justify-content-center align-items-center">
+               <h5 class="modal-title">
+                  Are you sure you want to delete project "{{ project.name }}"?
+               </h5>
+               <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+               </button>
+            </div>
+            <div class="d-flex justify-content-center">
+               <a href="{% url 'tasks:projects' %}" class="btn btn-secondary">Cancel</a>
+               <form method="POST" action="{% url 'tasks:project-delete' project.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Delete</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, DeleteView, ListView
 
-from tasks.forms import WorkerEditForm, TeamForm
-from tasks.models import Worker, Team
+from tasks.forms import WorkerEditForm, TeamForm, ProjectForm
+from tasks.models import Worker, Team, Project
 
 
 class HomePageView(TemplateView):
@@ -49,3 +49,29 @@ class TeamDeleteView(DeleteView):
     model = Team
     success_url = reverse_lazy("tasks:teams")
     template_name = 'tasks/team_delete.html'
+
+
+class ProjectView(ListView):
+    model = Project
+    template_name = 'tasks/projects.html'
+
+
+class ProjectCreateView(CreateView):
+    model = Project
+    form_class = ProjectForm
+    success_url = reverse_lazy("tasks:projects")
+
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    form_class = ProjectForm
+    success_url = reverse_lazy("tasks:projects")
+    template_name = 'tasks/project_form.html'
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    success_url = reverse_lazy("tasks:projects")
+
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'tasks/project_detail.html'
