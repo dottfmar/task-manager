@@ -55,5 +55,8 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks", null=True, blank=True)
     assignees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="tasks", blank=True)
 
+    class Meta:
+        ordering = ['is_completed', "name"]
+
     def __str__(self):
         return self.name

@@ -92,9 +92,7 @@ class TaskForm(forms.ModelForm):
         'priority': forms.RadioSelect(
             attrs={'class': 'form-check-input'}
         ),
-        'task_type': forms.Select(
-            attrs={'class': 'form-control'}
-        ),
+        'task_type': forms.RadioSelect,
         'project': forms.Select(
             attrs={'class': 'form-control'}
         ),

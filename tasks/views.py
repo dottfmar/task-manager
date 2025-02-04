@@ -103,7 +103,8 @@ class TaskToggleStatusView(View):
         task = get_object_or_404(Task, pk=pk)
         task.is_completed = not task.is_completed
         task.save()
-        return redirect("tasks:tasks")
+        next_url = request.POST.get("next", request.META.get("HTTP_REFERER", "tasks:tasks"))
+        return redirect(next_url)
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
@@ -118,6 +119,12 @@ class TaskUpdateView(UpdateView):
     form_class = TaskForm
     success_url = reverse_lazy("tasks:tasks")
     template_name = 'tasks/task_form.html'
+
+    def form_valid(self, form):
+        task = form.save(commit=False)
+        task.is_completed = form.cleaned_data.get('is_completed', False)
+        task.save()
+        return super().form_valid(form)
 
 
 class TaskDeleteView(DeleteView):

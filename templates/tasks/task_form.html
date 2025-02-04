@@ -8,7 +8,7 @@
 <div class="container-fluid mt-5">
   <div class="p-5 shadow-lg rounded bg-white form-container">
     <h2 class="text-center text-gold mb-4" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px;">
-      {{ object|yesno:"Edit,Add" }} new task
+      {{ object|yesno:"Edit,Add new" }} task
     </h2>
 
     {% if form.non_field_errors %}
@@ -70,18 +70,21 @@
               </div>
             </div>
           </div>
+
           <div class="form-group d-flex justify-content-between align-items-center">
             <label class="text-gold font-weight-bold mb-0">Task Type</label>
             <button type="button" class="btn btn-view-all" data-target="#task-type-modal">View All</button>
           </div>
           <div class="d-flex flex-wrap">
-            {% for type in form.task_type.field.queryset|slice:":3" %}
-              <div class="form-check mr-2 mb-2">
-                <input type="checkbox" name="task_type" class="form-check-input" value="{{ type.id }}" id="task_type-{{ type.id }}" {% if type.id in form.task_type.value %}checked{% endif %}>
-                <label class="form-check-label" for="task_type-{{ type.id }}">{{ type.name }}</label>
-              </div>
-            {% endfor %}
+         {% for type in form.task_type.field.queryset|slice:":3" %}
+          <div class="form-check mr-2 mb-2">
+            <input type="radio" name="task_type" class="form-check-input" value="{{ type.id }}" id="task_type-{{ type.id }}" {% if form.task_type.value == type.id %}checked{% endif %}>
+            <label class="form-check-label" for="task_type-{{ type.id }}">{{ type.name }}</label>
           </div>
+         {% endfor %}
+        </div>
+
+
           <div class="form-group d-flex justify-content-between align-items-center">
             <label class="text-gold font-weight-bold mb-0">Project</label>
             <button type="button" class="btn btn-view-all" data-target="#project-modal">View All</button>
@@ -94,6 +97,7 @@
               </div>
             {% endfor %}
           </div>
+
           <div class="form-group d-flex justify-content-between align-items-center">
             <label class="text-gold font-weight-bold mb-0">Assignees</label>
             <button type="button" class="btn btn-view-all" data-target="#assignees-modal">View All</button>

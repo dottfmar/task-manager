@@ -90,3 +90,8 @@
 .clickable-row:hover {
     background-color: #f8f9fa !important;
 }
+a,
+a:hover {
+    color: black;
+    text-decoration: none;
+}
