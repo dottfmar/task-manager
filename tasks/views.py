@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, UpdateView
+from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, DeleteView, ListView
 
-from tasks.forms import WorkerEditForm
-from tasks.models import Worker
+from tasks.forms import WorkerEditForm, TeamForm
+from tasks.models import Worker, Team
 
 
 class HomePageView(TemplateView):
@@ -25,3 +25,27 @@ class EditProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class TeamView(ListView):
+    model = Team
+    template_name = 'tasks/teams.html'
+
+
+class TeamCreateView(CreateView):
+    model = Team
+    form_class = TeamForm
+    success_url = reverse_lazy("tasks:teams")
+
+
+class TeamUpdateView(UpdateView):
+    model = Team
+    form_class = TeamForm
+    success_url = reverse_lazy("tasks:teams")
+    template_name = 'tasks/team_form.html'
+
+
+class TeamDeleteView(DeleteView):
+    model = Team
+    success_url = reverse_lazy("tasks:teams")
+    template_name = 'tasks/team_delete.html'

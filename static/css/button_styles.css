@@ -10,11 +10,15 @@
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 20px;
+    text-decoration: none;
+    justify-content: center;
+    text-align: center;
 }
 
 .btn-edit:hover {
     background-color: #555;
     color: #fff;
+    text-decoration: none;
 }
 
 .profile-container {
