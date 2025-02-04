@@ -110,6 +110,11 @@ class TaskCreateView(CreateView):
     form_class = TaskForm
     success_url = reverse_lazy("tasks:tasks")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['workers'] = Worker.objects.all()
+        return context
+
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'tasks/task_detail.html'
@@ -125,6 +130,11 @@ class TaskUpdateView(UpdateView):
         task.is_completed = form.cleaned_data.get('is_completed', False)
         task.save()
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['workers'] = Worker.objects.all()
+        return context
 
 
 class TaskDeleteView(DeleteView):

@@ -17,7 +17,8 @@ from tasks.views import (
     TaskCreateView,
     TaskDetailView,
     TaskUpdateView,
-    TaskDeleteView, TaskToggleStatusView
+    TaskDeleteView,
+    TaskToggleStatusView
 )
 
 app_name = 'tasks'
