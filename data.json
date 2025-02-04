@@ -1,0 +1,167 @@
+[
+  {
+    "model": "tasks.position",
+    "pk": 1,
+    "fields": {
+      "name": "Developer"
+    }
+  },
+  {
+    "model": "tasks.position",
+    "pk": 2,
+    "fields": {
+      "name": "Designer"
+    }
+  },
+  {
+    "model": "tasks.position",
+    "pk": 3,
+    "fields": {
+      "name": "Project Manager"
+    }
+  },
+  {
+    "model": "tasks.position",
+    "pk": 4,
+    "fields": {
+      "name": "QA Engineer"
+    }
+  },
+  {
+    "model": "tasks.worker",
+    "pk": 2,
+    "fields": {
+      "username": "john_doe",
+      "position": 1,
+      "password": "!"
+    }
+  },
+  {
+    "model": "tasks.worker",
+    "pk": 3,
+    "fields": {
+      "username": "jane_smith",
+      "position": 2,
+      "password": "!"
+    }
+  },
+  {
+    "model": "tasks.worker",
+    "pk": 4,
+    "fields": {
+      "username": "alice_wonder",
+      "position": 3,
+      "password": "!"
+    }
+  },
+  {
+    "model": "tasks.worker",
+    "pk": 5,
+    "fields": {
+      "username": "bob_builder",
+      "position": 4,
+      "password": "!"
+    }
+  },
+  {
+    "model": "tasks.team",
+    "pk": 1,
+    "fields": {
+      "name": "Team Alpha",
+      "members": [2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "tasks.project",
+    "pk": 3,
+    "fields": {
+      "name": "Project X",
+      "description": "Top secret project",
+      "team": 1
+    }
+  },
+  {
+    "model": "tasks.tasktype",
+    "pk": 1,
+    "fields": {
+      "name": "Bug Fix"
+    }
+  },
+  {
+    "model": "tasks.tasktype",
+    "pk": 2,
+    "fields": {
+      "name": "Feature Development"
+    }
+  },
+  {
+    "model": "tasks.tasktype",
+    "pk": 3,
+    "fields": {
+      "name": "Code Review"
+    }
+  },
+  {
+    "model": "tasks.tasktype",
+    "pk": 4,
+    "fields": {
+      "name": "Testing"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+      "name": "Fix login bug",
+      "description": "Resolve issue with login functionality",
+      "deadline": "2025-02-10T12:00:00Z",
+      "is_completed": false,
+      "priority": "HIGH",
+      "task_type": 1,
+      "project": 3,
+      "assignees": [2]
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+      "name": "Design new landing page",
+      "description": "Create a fresh UI for the main page",
+      "deadline": "2025-02-15T18:00:00Z",
+      "is_completed": false,
+      "priority": "MEDIUM",
+      "task_type": 2,
+      "project": 3,
+      "assignees": [3]
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 5,
+    "fields": {
+      "name": "Review API code",
+      "description": "Check API endpoints for efficiency and security",
+      "deadline": "2025-02-12T14:00:00Z",
+      "is_completed": false,
+      "priority": "URGENT",
+      "task_type": 3,
+      "project": 3,
+      "assignees": [4]
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 6,
+    "fields": {
+      "name": "Run regression tests",
+      "description": "Perform regression testing before release",
+      "deadline": "2025-02-20T16:00:00Z",
+      "is_completed": false,
+      "priority": "LOW",
+      "task_type": 4,
+      "project": 3,
+      "assignees": [5]
+    }
+  }
+]
