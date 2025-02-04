@@ -1,8 +1,10 @@
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, DeleteView, ListView
 
-from tasks.forms import WorkerEditForm, TeamForm, ProjectForm
-from tasks.models import Worker, Team, Project
+from tasks.forms import WorkerEditForm, TeamForm, ProjectForm, TaskForm
+from tasks.models import Worker, Team, Project, Task
 
 
 class HomePageView(TemplateView):
@@ -75,3 +77,50 @@ class ProjectDeleteView(DeleteView):
 class ProjectDetailView(DetailView):
     model = Project
     template_name = 'tasks/project_detail.html'
+
+
+class TaskView(ListView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'tasks/tasks.html'
+    success_url = reverse_lazy("tasks:tasks")
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        completed = self.request.GET.get('completed')
+        if completed is not None:
+            if completed.lower() == 'true':
+                queryset = queryset.filter(is_completed=True)
+            elif completed.lower() == 'false':
+                queryset = queryset.filter(is_completed=False)
+        priority = self.request.GET.get('priority')
+        if priority:
+            queryset = queryset.filter(priority=priority)
+        return queryset
+
+class TaskToggleStatusView(View):
+    def post(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        task.is_completed = not task.is_completed
+        task.save()
+        return redirect("tasks:tasks")
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("tasks:tasks")
+
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'tasks/task_detail.html'
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("tasks:tasks")
+    template_name = 'tasks/task_form.html'
+
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    success_url = reverse_lazy("tasks:tasks")
+

@@ -1,0 +1,70 @@
+.task-detail-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.text-gold {
+  color: #d4af37;
+}
+
+.priority-urgent {
+  background-color: #dc3545;
+  color: white;
+}
+
+.priority-high {
+  background-color: #ff6600;
+  color: white;
+}
+
+.priority-medium {
+  background-color: #ffc107;
+  color: black;
+}
+
+.priority-low {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-custom-action {
+  width: 150px;
+}
+
+.btn-warning {
+    background-color: #d4af37;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-warning i {
+    font-size: 16px;
+}
+
+
+.btn-danger-a {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    border: none;
+    text-decoration: none;
+}

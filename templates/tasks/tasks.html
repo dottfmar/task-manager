@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+       <h1 class="page-title">Tasks</h1>
+       <a href="{% url 'tasks:task-create' %}" class="btn btn-custom">Add new task</a>
+    </div>
+
+    {% if task_list %}
+      <div class="table-responsive">
+        <table class="table table-hover custom-table">
+          <thead class="thead-gold">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Deadline</th>
+              <th scope="col">Type</th>
+              <th scope="col">Project</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for task in task_list %}
+              <tr class="clickable-row" data-href="{% url 'tasks:task-detail' pk=task.id %}">
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.task_type.name }}</td>
+                <td>{{ task.project.name }}</td>
+                <td>
+                  <span class="badge priority-{{ task.priority|lower }}">{{ task.get_priority_display }}</span>
+                </td>
+                <td>
+                 <form method="post" action="{% url 'tasks:task-toggle-status' pk=task.id %}" class="no-click">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-custom-action {% if task.is_completed %}btn-success{% else %}btn-primary{% endif %}">
+                      {% if task.is_completed %}Completed{% else %}Incompleted{% endif %}
+                    </button>
+                  </form>
+                </td>
+                <td>
+                  <button class="btn btn-danger-w no-click" data-toggle="modal" data-target="#deleteModal{{ task.id }}">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="no-tasks text-center text-muted">You haven't created tasks yet</p>
+    {% endif %}
+  </div>
+
+  {% for task in task_list %}
+  <div class="modal fade" id="deleteModal{{ task.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ task.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body d-flex justify-content-center align-items-center">
+          <h5 class="modal-title" id="deleteModalLabel{{ task.id }}">
+            Are you sure you want to delete task "{{ task.name }}"?
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a href="{% url 'tasks:tasks' %}" class="btn btn-secondary">Cancel</a>
+          <form method="POST" action="{% url 'tasks:task-delete' pk=task.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm btn-custom-action">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".clickable-row").click(function(e) {
+        if ($(e.target).closest(".no-click").length === 0) {
+          window.location = $(this).data("href");
+        }
+      });
+    });
+  </script>
+{% endblock %}

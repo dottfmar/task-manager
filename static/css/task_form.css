@@ -1,0 +1,161 @@
+.text-gold {
+  color: #b8860b;
+}
+
+.form-control-lg {
+  font-size: 20px;
+  border-radius: 12px;
+}
+
+.btn-view-all {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.btn-view-all:hover {
+    background-color: #E6C200;
+    color: black;
+}
+
+.btn-gold {
+  background-color: #b8860b;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease;
+  width: 45%;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease;
+  width: 45%;
+}
+
+.form-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-6 {
+  margin-bottom: 20px;
+}
+
+.checkbox-group .form-check {
+  margin-bottom: 10px;
+}
+
+.btn-view-all {
+  font-size: 16px;
+  text-decoration: none;
+  color: #b8860b;
+  background: none;
+  border: none;
+}
+
+.priority-btn {
+  border: 2px solid #b8860b;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.priority-btn:checked + .priority-label {
+  color: white;
+}
+
+.priority-urgent:checked + .priority-label {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.priority-high:checked + .priority-label {
+  background-color: #f39c12;
+  border-color: #f39c12;
+}
+
+.priority-medium:checked + .priority-label {
+  background-color: #f1c40f;
+  border-color: #f1c40f;
+}
+
+.priority-low:checked + .priority-label {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+}
+
+.priority-none:checked + .priority-label {
+  background-color: #95a5a6;
+  border-color: #95a5a6;
+}
+
+.priority-label {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.d-flex .form-check {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.d-flex .form-check {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.form-check-input {
+    border: 2px solid #d4af37;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+}
+
+.form-check-input:checked {
+    background-color: #d4af37;
+    border-color: #b8860b;
+}
+
+.form-check-label {
+    font-weight: bold;
+    color: #d4af37;
+}
+
+.form-check-input[type="radio"] {
+    border-radius: 50%;
+}

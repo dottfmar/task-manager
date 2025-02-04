@@ -12,7 +12,12 @@ from tasks.views import (
     ProjectCreateView,
     ProjectDetailView,
     ProjectUpdateView,
-    ProjectDeleteView
+    ProjectDeleteView,
+    TaskView,
+    TaskCreateView,
+    TaskDetailView,
+    TaskUpdateView,
+    TaskDeleteView, TaskToggleStatusView
 )
 
 app_name = 'tasks'
@@ -30,4 +35,10 @@ urlpatterns = [
     path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
     path("projects/<int:pk>/update/", ProjectUpdateView.as_view(), name="project-update"),
     path("projects/<int:pk>/delete/", ProjectDeleteView.as_view(), name="project-delete"),
+    path("tasks/", TaskView.as_view(), name="tasks"),
+    path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
+    path("tasks/<int:pk>/",TaskDetailView.as_view(), name="task-detail"),
+    path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
+    path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
+    path("<int:pk>/toggle-status/", TaskToggleStatusView.as_view(), name="task-toggle-status"),
 ]

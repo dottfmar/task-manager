@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/task_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
+
+<div class="container mt-5">
+  <div class="p-5 shadow-lg rounded bg-white task-detail-container">
+    <h2 class="text-center text-gold mb-4">{{ task.name }}</h2>
+
+    <p><strong>Description:</strong> {{ task.description }}</p>
+    <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+    <p><strong>Type:</strong> {{ task.task_type.name }}</p>
+    <p><strong>Project:</strong> {{ task.project.name }}</p>
+    <p><strong>Priority:</strong> <span class="badge priority-{{ task.priority|lower }}">{{ task.get_priority_display }}</span></p>
+    <p><strong>Assignees:</strong>
+      {% for assignee in task.assignees.all %}
+        {{ assignee.username }}{% if not forloop.last %}, {% endif %}
+      {% empty %}
+        No assignees
+      {% endfor %}
+    </p>
+
+    <div class="form-group">
+      <label class="text-gold font-weight-bold">Status:</label>
+      <span class="badge {% if task.is_completed %}badge-success{% else %}badge-primary{% endif %} ml-2">
+        {% if task.is_completed %}Completed{% else %}Incomplete{% endif %}
+      </span>
+    </div>
+
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'tasks:tasks' %}" class="btn btn-secondary">Back to Tasks</a>
+      <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-warning">
+        <i class="fas fa-edit"></i> Edit
+      </a>
+      <button class="btn btn-danger-a" data-toggle="modal" data-target="#deleteModal">
+        <i class="fas fa-trash-alt"></i> Delete
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <h5 class="modal-title" id="deleteModalLabel">
+          Are you sure you want to delete task "{{ task.name }}"?
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form method="POST" action="{% url 'tasks:task-delete' pk=task.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

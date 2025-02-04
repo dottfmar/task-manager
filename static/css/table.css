@@ -1,0 +1,92 @@
+.thead-gold {
+    background-color: #d4af37;
+    color: white;
+    font-weight: bold;
+}
+
+.custom-table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #fffae6;
+    transition: 0.3s ease-in-out;
+}
+
+.priority-urgent {
+    background-color: #dc3545;
+    color: white;
+}
+
+.priority-high {
+    background-color: #fd7e14;
+    color: white;
+}
+
+.priority-medium {
+    background-color: #ffc107;
+    color: black;
+}
+
+.priority-low {
+    background-color: #28a745;
+    color: white;
+}
+
+.priority-none {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-danger-w {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-danger-w:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-danger-w,
+.btn-custom-action {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-custom {
+   background-color: #b8860b;
+   color: white;
+   border-radius: 50px;
+   transition: background-color 0.3s ease;
+   font-family: 'Arial', sans-serif;
+   font-size: 20px;
+   padding: 14px 35px;
+   font-weight: bold;
+}
+
+.btn-custom:hover {
+   background-color: #d4af37;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+.clickable-row:hover {
+    background-color: #f8f9fa !important;
+}
