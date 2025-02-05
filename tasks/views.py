@@ -34,6 +34,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 class TeamView(LoginRequiredMixin, ListView):
     model = Team
     template_name = 'tasks/teams.html'
+    paginate_by = 10
 
 
 class TeamCreateView(LoginRequiredMixin, CreateView):
@@ -58,6 +59,7 @@ class TeamDeleteView(LoginRequiredMixin, DeleteView):
 class ProjectView(LoginRequiredMixin, ListView):
     model = Project
     template_name = 'tasks/projects.html'
+    paginate_by = 10
 
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
@@ -75,6 +77,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     success_url = reverse_lazy("tasks:projects")
+    template_name = 'tasks/project_delete.html'
 
 class ProjectDetailView(LoginRequiredMixin, DetailView):
     model = Project
@@ -86,6 +89,7 @@ class TaskView(LoginRequiredMixin, ListView):
     form_class = TaskForm
     template_name = 'tasks/tasks.html'
     success_url = reverse_lazy("tasks:tasks")
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -142,6 +146,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     success_url = reverse_lazy("tasks:tasks")
+    template_name = "tasks/task_delete.html"
 
 def register(request):
     if request.method == 'POST':
