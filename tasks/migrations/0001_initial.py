@@ -13,84 +13,264 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Position',
+            name="Position",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='TaskType',
+            name="TaskType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Worker',
+            name="Worker",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
-                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name='username')),
-                ('first_name', models.CharField(blank=True, max_length=150, verbose_name='first name')),
-                ('last_name', models.CharField(blank=True, max_length=150, verbose_name='last name')),
-                ('email', models.EmailField(blank=True, max_length=254, verbose_name='email address')),
-                ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
-                ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
-                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
-                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
-                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
-                ('position', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='tasks.position')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("password", models.CharField(max_length=128, verbose_name="password")),
+                (
+                    "last_login",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="last login"
+                    ),
+                ),
+                (
+                    "is_superuser",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Designates that this user has all permissions without explicitly assigning them.",
+                        verbose_name="superuser status",
+                    ),
+                ),
+                (
+                    "username",
+                    models.CharField(
+                        error_messages={
+                            "unique": "A user with that username already exists."
+                        },
+                        help_text="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+                        max_length=150,
+                        unique=True,
+                        validators=[
+                            django.contrib.auth.validators.UnicodeUsernameValidator()
+                        ],
+                        verbose_name="username",
+                    ),
+                ),
+                (
+                    "first_name",
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="first name"
+                    ),
+                ),
+                (
+                    "last_name",
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="last name"
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        blank=True, max_length=254, verbose_name="email address"
+                    ),
+                ),
+                (
+                    "is_staff",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Designates whether the user can log into this admin site.",
+                        verbose_name="staff status",
+                    ),
+                ),
+                (
+                    "is_active",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Designates whether this user should be treated as active. Unselect this instead of deleting accounts.",
+                        verbose_name="active",
+                    ),
+                ),
+                (
+                    "date_joined",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, verbose_name="date joined"
+                    ),
+                ),
+                (
+                    "groups",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+                        related_name="user_set",
+                        related_query_name="user",
+                        to="auth.group",
+                        verbose_name="groups",
+                    ),
+                ),
+                (
+                    "user_permissions",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="Specific permissions for this user.",
+                        related_name="user_set",
+                        related_query_name="user",
+                        to="auth.permission",
+                        verbose_name="user permissions",
+                    ),
+                ),
+                (
+                    "position",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="tasks.position",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'user',
-                'verbose_name_plural': 'users',
-                'abstract': False,
+                "verbose_name": "user",
+                "verbose_name_plural": "users",
+                "abstract": False,
             },
             managers=[
-                ('objects', django.contrib.auth.models.UserManager()),
+                ("objects", django.contrib.auth.models.UserManager()),
             ],
         ),
         migrations.CreateModel(
-            name='Task',
+            name="Task",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('deadline', models.DateTimeField(blank=True, null=True)),
-                ('is_completed', models.BooleanField(default=False)),
-                ('priority', models.CharField(choices=[('URGENT', 'Urgent'), ('HIGH', 'High'), ('MEDIUM', 'Medium'), ('LOW', 'Low'), ('NONE', 'No Priority')], default='NONE', max_length=10)),
-                ('assignees', models.ManyToManyField(blank=True, related_name='tasks', to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='tasks', to='tasks.project')),
-                ('task_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='tasks.tasktype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("deadline", models.DateTimeField(blank=True, null=True)),
+                ("is_completed", models.BooleanField(default=False)),
+                (
+                    "priority",
+                    models.CharField(
+                        choices=[
+                            ("URGENT", "Urgent"),
+                            ("HIGH", "High"),
+                            ("MEDIUM", "Medium"),
+                            ("LOW", "Low"),
+                            ("NONE", "No Priority"),
+                        ],
+                        default="NONE",
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "assignees",
+                    models.ManyToManyField(
+                        blank=True, related_name="tasks", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
+                (
+                    "project",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tasks",
+                        to="tasks.project",
+                    ),
+                ),
+                (
+                    "task_type",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="tasks.tasktype",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Team',
+            name="Team",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True)),
-                ('members', models.ManyToManyField(related_name='teams', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, unique=True)),
+                (
+                    "members",
+                    models.ManyToManyField(
+                        related_name="teams", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='project',
-            name='team',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='projects', to='tasks.team'),
+            model_name="project",
+            name="team",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="projects",
+                to="tasks.team",
+            ),
         ),
     ]
