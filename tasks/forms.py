@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from tasks.models import Worker, Team, Project, TaskType, Task
+from tasks.models import Worker, Team, Project, TaskType, Task, Position
 
 
 class WorkerEditForm(forms.ModelForm):
@@ -55,7 +55,7 @@ class ProjectForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'description', 'deadline', 'priority', 'task_type', 'project', 'assignees']
+        fields = ['name', 'description', 'deadline', 'priority', 'task_type', 'project', 'assignees', "is_completed"]
 
     priority = forms.ChoiceField(
         choices=Task.PriorityChoices,
@@ -106,3 +106,9 @@ class WorkerCreationForm(UserCreationForm):
     class Meta:
         model = Worker
         fields = ['username', 'password1', 'password2', 'position']
+
+    position = forms.ModelChoiceField(
+        queryset=Position.objects.all(),
+        required=False,
+        empty_label="Select Position"
+    )
