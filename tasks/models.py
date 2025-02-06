@@ -1,4 +1,4 @@
-from task_manager import settings
+from task_manager.settings import base
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -18,7 +18,7 @@ class Worker(AbstractUser):
 
 class Team(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="teams")
+    members = models.ManyToManyField(base.AUTH_USER_MODEL, related_name="teams")
 
     def __str__(self):
         return self.name
@@ -62,7 +62,7 @@ class Task(models.Model):
         Project, on_delete=models.CASCADE, related_name="tasks", null=True, blank=True
     )
     assignees = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="tasks", blank=True
+        base.AUTH_USER_MODEL, related_name="tasks", blank=True
     )
 
     class Meta:
