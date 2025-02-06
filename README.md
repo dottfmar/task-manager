@@ -12,3 +12,7 @@ Welcome to the Foravlima, a simple task manager for developers. This application
 - **Authentication:** Login/logout functionality.
 - **Registration:** Users can sign up into the system.
 
+## Interface
+
+![img.png](img.png)
+![img_1.png](img_1.png)
