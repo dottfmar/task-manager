@@ -23,10 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+from dotenv import load_dotenv
 
 
-SECRET_KEY=os.getenv("SECRET_KEY")
-# Application definition
+load_dotenv(BASE_DIR / '.env')
+
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
