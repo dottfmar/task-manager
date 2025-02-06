@@ -16,3 +16,13 @@ Welcome to the Foravlima, a simple task manager for developers. This application
 
 ![img.png](img.png)
 ![img_1.png](img_1.png)
+
+
+## To login
+
+username: admin
+password: 1234
+
+## On deploy
+
+https://foravlima.onrender.com/
