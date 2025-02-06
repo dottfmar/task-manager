@@ -17,12 +17,25 @@ Welcome to the Foravlima, a simple task manager for developers. This application
 ![img.png](img.png)
 ![img_1.png](img_1.png)
 
-
-## To login
-
-username: admin
-password: 1234
-
-## On deploy
+## On render
 
 https://foravlima.onrender.com/
+
+
+## Credentials for login
+
+username: admin
+
+password: 1234
+
+## Installation
+
+```shell
+git clone https://github.com/dottfmar/task-manager.git
+cd task-manager
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py runserver
+```
+
