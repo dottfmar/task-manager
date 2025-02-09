@@ -43,8 +43,6 @@ class TaskViewTest(TestCase):
             username="testuser", password="password"
         )
         self.client.login(username="testuser", password="password")
-
-        # Створення кількох задач
         self.task1 = Task.objects.create(
             name="Task 1",
             description="Description of Task 1",
@@ -175,8 +173,6 @@ class TaskUpdateViewTest(TestCase):
             username="testuser", password="password"
         )
         self.client.login(username="testuser", password="password")
-
-        # Створюємо команду, проект і тип задачі
         team = Team.objects.create(name="Team A")
         project = Project.objects.create(
             name="Project A", description="Project A Description", team=team

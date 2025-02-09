@@ -28,7 +28,7 @@ username: admin
 
 password: 1234
 
-## Installation
+## Installation for Windows
 
 ```shell
 git clone https://github.com/dottfmar/task-manager.git
@@ -36,6 +36,20 @@ cd task-manager
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
+python manage.py migrate
+python loaddata data.json
 python manage.py runserver
 ```
 
+## Installation for MacOS
+
+```shell
+git clone https://github.com/dottfmar/task-manager.git
+cd task-manager
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python loaddata data.json
+python manage.py runserver
+```
