@@ -46,10 +46,10 @@ python manage.py runserver
 ```shell
 git clone https://github.com/dottfmar/task-manager.git
 cd task-manager
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python manage.py migrate
-python loaddata data.json
-python manage.py runserver
+python3 manage.py migrate
+python3 loaddata data.json
+python3 manage.py runserver
 ```
