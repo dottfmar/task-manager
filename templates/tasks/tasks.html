@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="page-title">Tasks</h1>
+      <a href="{% url 'tasks:task-create' %}?priority={{ request.GET.priority|default:'' }}&completed={{ request.GET.completed|default:'' }}" class="btn btn-custom">Add new task</a>
+    </div>
+
+    <div class="d-flex justify-content-between mb-4">
+        <form method="get" action="{% url 'tasks:tasks' %}" class="d-flex gap-3">
+            <div>
+                <label for="priorityFilter" class="form-label">Filter by Priority</label>
+                <select id="priorityFilter" class="form-select" name="priority" onchange="this.form.submit()">
+                    <option value="">All</option>
+                    <option value="URGENT" {% if request.GET.priority == 'URGENT' %}selected{% endif %}>Urgent</option>
+                    <option value="HIGH" {% if request.GET.priority == 'HIGH' %}selected{% endif %}>High</option>
+                    <option value="MEDIUM" {% if request.GET.priority == 'MEDIUM' %}selected{% endif %}>Medium</option>
+                    <option value="LOW" {% if request.GET.priority == 'LOW' %}selected{% endif %}>Low</option>
+                    <option value="NONE" {% if request.GET.priority == 'NONE' %}selected{% endif %}>No Priority</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="statusFilter" class="form-label">Filter by Status</label>
+                <select id="statusFilter" class="form-select" name="completed" onchange="this.form.submit()">
+                    <option value="">All</option>
+                    <option value="true" {% if request.GET.completed == "true" %}selected{% endif %}>Completed</option>
+                    <option value="false" {% if request.GET.completed == "false" %}selected{% endif %}>Incompleted</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    {% if task_list %}
+      <div class="table-responsive">
+        <table class="table table-hover custom-table">
+          <thead class="thead-gold">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Deadline</th>
+              <th scope="col">Type</th>
+              <th scope="col">Project</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for task in task_list %}
+              <tr>
+                <td><a href="{% url 'tasks:task-detail' pk=task.id %}?priority={{ request.GET.priority|default:'' }}&completed={{ request.GET.completed|default:'' }}">{{ task.name }}</a></td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.task_type.name }}</td>
+                <td>{{ task.project.name }}</td>
+                <td>
+                  <span class="badge priority-{{ task.priority|lower }}">{{ task.get_priority_display }}</span>
+                </td>
+                <td>
+                 <form method="post" action="{% url 'tasks:task-toggle-status' pk=task.id %}" class="no-click">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button type="submit" class="btn btn-custom-action {% if task.is_completed %}btn-success{% else %}btn-primary{% endif %}">
+                        {% if task.is_completed %}Completed{% else %}Incompleted{% endif %}
+                    </button>
+                 </form>
+
+                </td>
+                <td>
+                  <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger-w no-click">
+                    <i class="fa fa-trash-alt"></i> Delete
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="no-tasks text-center text-muted">You haven't created tasks yet</p>
+    {% endif %}
+  </div>
+{% endblock %}

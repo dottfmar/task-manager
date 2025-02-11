@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/teams.css' %}">
+<link rel="stylesheet" href="{% static 'css/team_form_styles.css' %}">
+
+<div class="container mt-5">
+    <div class="p-5 shadow-lg rounded bg-white form-container">
+        <h2 class="text-center text-gold mb-4">{{ object|yesno:"Edit,Create" }} a Team</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>There were some errors in your form:</strong>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label class="text-gold font-weight-bold" for="id_name">Team Name</label>
+                {{ form.name|add_class:"form-control-lg" }}
+            </div>
+
+            <div class="form-group">
+                <label class="text-gold font-weight-bold" for="id_members">Members</label>
+                <div class="checkbox-list">
+                    {{ form.members }}
+                    <small class="form-text text-muted">Select the members to add to this team.</small>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'tasks:teams' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-save">{{ object|yesno:"Edit,Create" }} Team</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

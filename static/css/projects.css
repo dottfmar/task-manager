@@ -1,0 +1,98 @@
+.btn-custom {
+    background-color: #b8860b;
+    color: white;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    padding: 14px 35px;
+    font-weight: bold;
+}
+
+.btn-custom:hover {
+    background-color: #d4af37;
+    cursor: pointer;
+}
+
+.card-body {
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.card-body:hover {
+    transform: translateY(-10px);
+}
+
+.card-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444;
+    text-transform: uppercase;
+}
+
+.card-text {
+    font-size: 18px;
+    color: #444;
+    margin-top: 10px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.row {
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.container {
+    width: 100%;
+}
+
+.edit-text,
+.delete-text {
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+}
+
+.edit-text:hover,
+.delete-text:hover {
+    color: #ffcc00;
+}
+
+.edit-text i,
+.delete-text i {
+    margin-right: 8px;
+}
+
+.edit-text {
+    top: 15px;
+}
+
+.delete-text {
+    bottom: 15px;
+}
+
+a {
+    color: #444;
+    text-decoration: none;
+}
+
+a:hover {
+    color: darkgoldenrod;
+    text-decoration: none;
+}
+
+.project-bg {
+    background: linear-gradient(to right, #ffffcc, #ffffff);
+}
+

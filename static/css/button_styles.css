@@ -1,0 +1,45 @@
+.btn-edit {
+    background-color: transparent;
+    border: 2px solid #555;
+    color: #555;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    text-decoration: none;
+    justify-content: center;
+    text-align: center;
+}
+
+.btn-edit:hover {
+    background-color: #555;
+    color: #fff;
+    text-decoration: none;
+}
+
+.profile-container {
+    height: 100vh;
+}
+
+.profile-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card h2 {
+    color: #b8860b;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.profile-card p {
+    color: #555;
+    font-size: 1.3rem;
+    line-height: 1.6;
+}

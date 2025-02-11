@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+   <link rel="stylesheet" href="{% static 'css/teams.css' %}">
+   <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+
+   <div class="container mt-5">
+      <div class="d-flex justify-content-between mb-5">
+         <h1 class="page-title">Teams</h1>
+         <a href="{% url 'tasks:team-create' %}" class="btn btn-custom">Add new team</a>
+      </div>
+
+      {% if team_list %}
+         <div class="row">
+            {% for team in team_list %}
+               <div class="col-md-12 mb-5">
+                  <div class="card team-card">
+                     <div class="card-body team-bg">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="card-title">{{ team.name }}</h5>
+                                <p class="card-text">
+                                   <strong>Members:</strong>
+                                   {% for member in team.members.all %}
+                                      {{ member.username }}{% if not forloop.last %}, {% endif %}
+                                   {% empty %}
+                                      No members added yet.
+                                   {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="edit-text">
+                          <a href="{% url 'tasks:team-update' pk=team.id %}"><i class="fa fa-edit"></i> Edit</a>
+                        </p>
+                        <p class="delete-text">
+                          <a href="{% url 'tasks:team-delete' pk=team.id %}" class="text-danger">
+                             <i class="fa fa-trash-alt"></i> Delete
+                          </a>
+                        </p>
+                    </div>
+                  </div>
+               </div>
+            {% endfor %}
+         </div>
+      {% else %}
+         <p class="no-teams">You haven't added to a team yet</p>
+      {% endif %}
+   </div>
+{% endblock %}

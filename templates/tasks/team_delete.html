@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <br><br><br><br><br><br>
+  <h2 class="text-center" style="margin-bottom: 30px;">Delete team "{{ team.name }}"?</h2>
+
+  <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="text-center">
+      <a href="{% url 'tasks:teams' %}" class="btn btn-secondary">Cancel</a>
+      <form method="POST" action="{% url 'tasks:team-delete' team.id %}" style="display: inline-block;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/delete.css' %}">
+{% endblock %}

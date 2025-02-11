@@ -1,0 +1,89 @@
+.btn-custom {
+   background-color: #b8860b;
+   color: white;
+   border-radius: 50px;
+   transition: background-color 0.3s ease;
+   font-family: 'Arial', sans-serif;
+   font-size: 20px;
+   padding: 14px 35px;
+   font-weight: bold;
+}
+
+.btn-custom:hover {
+   background-color: #d4af37;
+}
+
+.card {
+   border-radius: 10px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   transition: transform 0.3s ease;
+}
+
+.card-body {
+   padding: 30px;
+   border-radius: 15px;
+   transition: transform 0.3s ease;
+   position: relative;
+}
+
+.card-body:hover {
+   transform: translateY(-5px);
+}
+
+.team-bg {
+   background: linear-gradient(to right, #d4e9ff, #ffffff);
+}
+
+.card-title {
+   font-size: 28px;
+   font-weight: bold;
+   color: #003366;
+   text-transform: uppercase;
+}
+
+.card-text {
+   color: #003366;
+   font-size: 18px;
+   margin-top: 10px;
+}
+
+.no-teams {
+   font-size: 18px;
+   font-weight: bold;
+   color: #b8860b;
+   margin-top: 30px;
+}
+
+
+.edit-text,
+.delete-text {
+   position: absolute;
+   right: 10px;
+   font-size: 16px;
+   font-weight: bold;
+   cursor: pointer;
+   color: #444;
+}
+
+.edit-text {
+   top: 15px;
+}
+
+.delete-text {
+   bottom: 15px;
+}
+
+.edit-text:hover,
+.delete-text:hover {
+   color: #ffcc00;
+}
+
+.edit-text i,
+.delete-text i {
+   margin-right: 8px;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}

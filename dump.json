@@ -1,0 +1,312 @@
+[
+{
+    "model": "tasks.position",
+    "pk": 1,
+    "fields": {
+        "name": "Developer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 2,
+    "fields": {
+        "name": "Designer"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 3,
+    "fields": {
+        "name": "Project Manager"
+    }
+},
+{
+    "model": "tasks.position",
+    "pk": 4,
+    "fields": {
+        "name": "QA Engineer"
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$rz49DTqIyiVnaB7usgfjPO$Mm5QdGgMvjvnbryOtSKDf/0gHeFbsFXWznLgUywG8tI=",
+        "last_login": "2025-02-06T06:19:22.953Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Kate",
+        "last_name": "Smith",
+        "email": "admin@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-02-03T22:40:46.222Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 2,
+    "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "john_doe",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-04T18:19:37.263Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 3,
+    "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "jane_smith",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-04T18:19:37.265Z",
+        "position": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 4,
+    "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "alice_wonder",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-04T18:19:37.266Z",
+        "position": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 5,
+    "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "bob_builder",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-04T18:19:37.267Z",
+        "position": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$pIAJVslHnqPJ3K3ntlQQRx$K59rV6Hbu+h5BOLmmWsRI/JlQzW+JkaIBMHf1W8fe20=",
+        "last_login": "2025-02-04T20:25:47.669Z",
+        "is_superuser": false,
+        "username": "user_admin",
+        "first_name": "Zayne",
+        "last_name": "Flact",
+        "email": "zayne@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-04T20:25:02.773Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.worker",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$gM0zoEUmTWkEeJZE6pZcuy$on8z8gpliEZZNELvQxG14TVcBw0SFdj+C3m2sIpTokE=",
+        "last_login": "2025-02-05T11:00:41.828Z",
+        "is_superuser": false,
+        "username": "admin.user",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-05T11:00:41.170Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 1,
+    "fields": {
+        "name": "Team Alpha",
+        "members": [
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "tasks.team",
+    "pk": 2,
+    "fields": {
+        "name": "My second team",
+        "members": [
+            1
+        ]
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 1,
+    "fields": {
+        "name": "My first project",
+        "description": "My first project on this web site",
+        "team": 1
+    }
+},
+{
+    "model": "tasks.project",
+    "pk": 3,
+    "fields": {
+        "name": "Project X",
+        "description": "Top secret project",
+        "team": 1
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "Bug Fix"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "Feature Development"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Code Review"
+    }
+},
+{
+    "model": "tasks.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "Testing"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+        "name": "First task",
+        "description": "My first task",
+        "deadline": "2025-03-28T10:17:00Z",
+        "is_completed": false,
+        "priority": "NONE",
+        "task_type": 3,
+        "project": 1,
+        "assignees": [
+            1
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+        "name": "Fix login bug",
+        "description": "Resolve issue with login functionality",
+        "deadline": "2025-02-10T12:00:00Z",
+        "is_completed": false,
+        "priority": "HIGH",
+        "task_type": 3,
+        "project": 3,
+        "assignees": [
+            2
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+        "name": "Design new landing page",
+        "description": "Create a fresh UI for the main page",
+        "deadline": "2025-02-15T18:00:00Z",
+        "is_completed": true,
+        "priority": "MEDIUM",
+        "task_type": 2,
+        "project": 3,
+        "assignees": [
+            3
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 5,
+    "fields": {
+        "name": "Review API code",
+        "description": "Check API endpoints for efficiency and security",
+        "deadline": "2025-02-12T14:00:00Z",
+        "is_completed": true,
+        "priority": "URGENT",
+        "task_type": 3,
+        "project": 3,
+        "assignees": [
+            2
+        ]
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 6,
+    "fields": {
+        "name": "Run regression tests",
+        "description": "Perform regression testing before release",
+        "deadline": "2025-02-20T16:00:00Z",
+        "is_completed": true,
+        "priority": "LOW",
+        "task_type": 4,
+        "project": 3,
+        "assignees": [
+            5
+        ]
+    }
+}
+]

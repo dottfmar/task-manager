@@ -1,0 +1,21 @@
+.form-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.form-control-lg {
+    font-size: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.form-container label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+}

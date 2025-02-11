@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="profile-container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="profile-card text-center p-5 border rounded shadow-lg" style="max-width: 700px; width: 100%; background-color: #fff;">
+      <h2>{{ user.username }}'s Profile</h2>
+      <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Position:</strong> {{ user.position.name }}</p>
+      <a href="{% url "tasks:edit-profile" %}" class="btn-edit">
+        <i class="fas fa-edit"></i>  Edit Profile
+      </a>
+    </div>
+  </div>
+  <link rel="stylesheet" href="{% static 'css/button_styles.css' %}">
+{% endblock %}

@@ -1,0 +1,35 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav {
+    background-color: #ffffff;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+.link {
+    text-decoration: none;
+    color: #b8860b;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 25px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+}
+.link:hover {
+    background-color: #b8860b;
+    color: #ffffff;
+    border: 2px solid #b8860b;
+    text-decoration: none;
+}
+.logout-link:hover {
+    color: #ffffff;
+    background-color: #b8860b;
+    border: 2px solid #b8860b;
+}
+.login-link {
+    margin-right: 0;
+}
